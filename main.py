@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import gi, os, sys
 gi.require_version("Gtk", "3.0")
 gi.require_version("Handy", "1")
@@ -26,7 +27,7 @@ class MyWindow(Handy.Window):
         self.scroll = Gtk.ScrolledWindow()
         self.web = WebKit2.WebView()
         self.web.load_uri("https://duckduckgo.com")
-        self.inp_url.set_placeholder_text("URL adresi girin...")
+        self.inp_url.set_placeholder_text("Web'de arayın veya URL adresi girin...")
         self.inp_url.connect("activate", self.on_inp_url_activate)
         self.hb.set_custom_title(self.inp_url)
         self.btn_prev = Gtk.Button()
@@ -62,7 +63,15 @@ class MyWindow(Handy.Window):
     def on_btn_prev_clicked(self, widget):
         self.web.go_back()
     def on_inp_url_activate(self, widget):
-        self.web.load_uri(self.inp_url.get_text())
+        url_text = self.inp_url.get_text()
+        domain = ".int .edu .gov .mil .lnc .is .dev .travel .info .biz .email .build .agency .zone .bid .condos .dating .events .maison .partners .properties .productions .social .reviews .tech"
+        domain.split()
+        if "https://" in url_text:
+            self.web.load_uri(url_text)
+        elif domain in url_text:
+            self.web.load_uri(f"https://{url_text}")
+        else:
+            self.web.load_uri(f"https://duckduckgo.com/?q={url_text}")
         self.inp_url.set_text("")
     def on_btn_ref_clicked(self, widget):
         self.web.reload()
