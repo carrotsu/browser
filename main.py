@@ -64,12 +64,8 @@ class MyWindow(Handy.Window):
         self.web.go_back()
     def on_inp_url_activate(self, widget):
         url_text = self.inp_url.get_text()
-        domain = ".int .edu .gov .mil .lnc .is .dev .travel .info .biz .email .build .agency .zone .bid .condos .dating .events .maison .partners .properties .productions .social .reviews .tech"
-        domain.split()
         if "https://" in url_text:
             self.web.load_uri(url_text)
-        elif domain in url_text:
-            self.web.load_uri(f"https://{url_text}")
         else:
             self.web.load_uri(f"https://duckduckgo.com/?q={url_text}")
         self.inp_url.set_text("")
