@@ -8,10 +8,10 @@ Handy.init()
 
 class MyWindow(Handy.Window):
     def __init__(self):
-        super().__init__(title="TeTeOS.Net")
-        self.set_title("TeTeOS.Net")
-        GLib.set_application_name("TeTeOS.Net")
-        GLib.set_prgname('TeTeOS.net')
+        super().__init__(title="Tarayıcı")
+        self.set_title("Tarayıcı")
+        GLib.set_application_name("Tarayıcı")
+        GLib.set_prgname('Tarayıcı')
 
         self.main_box = Gtk.Box(
             spacing = 6,
